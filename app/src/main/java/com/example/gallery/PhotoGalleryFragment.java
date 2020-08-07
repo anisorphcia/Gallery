@@ -33,7 +33,7 @@ public class PhotoGalleryFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        setRetainInstance(true);        //旋转设备时候，会销毁再重建，将其置为true即可不被销毁
         new FetchItemsTask().execute();
     }
 
@@ -43,6 +43,7 @@ public class PhotoGalleryFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_photo_gallery, container, false);
 
         mPhotoRecyclerView = (RecyclerView) v.findViewById(R.id.photo_recycler_view);
+        //第一个参数，上下文对象，第二个为一行显示几个
         mPhotoRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
         setupAdapter();
